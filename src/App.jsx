@@ -1,14 +1,19 @@
 import { Button } from "@nextui-org/react";
+import { Route, Routes } from "react-router-dom";
+import { Toaster, toast } from "sonner";
+import JobHome from "./Views/JobHome/JobHome";
+import Login from "./Views/Login/Login";
 
 const App = () => {
   return (
-    <>
-      <div className="flex flex-col bg-gray-900 min-h-screen p-5">
-        <p className="text-white">Yoou</p>
-        <p className="text-white">yii</p>
-        <Button className="mt-5">hi</Button>
-      </div>
-    </>
+    <div className="bg-gray-900 min-h-screen">
+      <Toaster richColors />
+
+      <Routes>
+        <Route path="/" element={<JobHome />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </div>
   );
 };
 
