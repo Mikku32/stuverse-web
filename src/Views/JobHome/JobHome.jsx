@@ -1,10 +1,11 @@
 import { Input } from "@nextui-org/react";
 import stuverseLogo from "../../assets/stuverse_cleaned.png";
 import { MdSearch } from "react-icons/md";
+import JobCard from "./Component/JobCard";
 
 const JobHome = () => {
   return (
-    <div className="flex flex-col px-3 ">
+    <div className="flex flex-col px-3 mb-3 ">
       <nav className="flex justify-center">
         <img src={stuverseLogo} alt="logo" className="w-20 h-20" />
       </nav>
@@ -19,7 +20,10 @@ const JobHome = () => {
         size="lg"
         placeholder="Search jobs here...."
       />
-      <h1 className="text-2xl mt-8">Featured Jobs</h1>
+      <h1 className="text-2xl mt-8 font-bold">Featured Jobs</h1>
+      <JobCard />
+      <JobCard />
+      <JobCard />
     </div>
   );
 };
