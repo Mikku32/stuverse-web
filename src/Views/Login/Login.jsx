@@ -4,6 +4,9 @@ import { Button, Input } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useDispatch } from "react-redux";
+import { loginWithEmailPassword } from "../../Redux/Slices/authSlice";
+import { toast } from "sonner";
 
 // react form validation
 const schema = yup
@@ -14,6 +17,7 @@ const schema = yup
   .required();
 
 const Login = () => {
+  const dispatch = useDispatch();
   //react form validation hook
   const {
     register,
@@ -24,7 +28,11 @@ const Login = () => {
   });
 
   const onSubmit = (data) => {
-    console.log(data);
+    try {
+      dispatch(loginWithEmailPassword(data)).unwrap();
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   return (
