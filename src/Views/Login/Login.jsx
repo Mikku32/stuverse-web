@@ -4,7 +4,7 @@ import { Button, Input } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginWithEmailPassword } from "../../Redux/Slices/authSlice";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
@@ -20,6 +20,7 @@ const schema = yup
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const authState = useSelector((state) => state.auth);
   //react form validation hook
   const {
     register,
@@ -40,8 +41,10 @@ const Login = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center pt-[20vh] gap-4 px-4">
-        <img src={stuverseLogo} alt="Logo" className="w-40" />
+      <div className="flex flex-col  justify-center pt-[20vh] gap-4 px-4">
+        <div className="flex justify-center">
+          <img src={stuverseLogo} alt="Logo" className="w-40" />
+        </div>
         <h1 className="flex text-3xl font-bold text-white ">
           Welcom to StuVerse!
         </h1>
@@ -55,6 +58,7 @@ const Login = () => {
             variant="bordered"
             size="md"
             label="Email"
+            labelPlacement="outside"
             {...register("email")} //form validation
             placeholder="Enter your email"
             isInvalid={errors.email ? true : false}
@@ -66,13 +70,23 @@ const Login = () => {
             size="md"
             type="password"
             label="Password"
+            labelPlacement="outside"
             {...register("password")} //form validation
             placeholder="Enter your password"
             isInvalid={errors.password ? true : false}
             errorMessage={errors.password?.message}
           />
         </form>
+        <p
+          className="flex justify-end text-blue-400 hover:cursor-pointer hover:underline"
+          onClick={() => {
+            console.log("forgot password");
+          }}
+        >
+          forgot password?
+        </p>
         <Button
+          isLoading={authState.status === "loading"}
           form="login-form"
           type="submit"
           color="primary"
@@ -80,6 +94,12 @@ const Login = () => {
         >
           Login
         </Button>
+        <div className="flex justify-center ">
+          <p className="mr-3">{"Don't have an account?"} </p>
+          <p className="text-blue-400 hover:cursor-pointer hover:underline">
+            Sign Up
+          </p>
+        </div>
       </div>
     </>
   );
