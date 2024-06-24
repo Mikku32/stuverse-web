@@ -1,11 +1,32 @@
-import React from "react";
 import stuverseLogo from "../../assets/stuverse_cleaned.png";
 import { Button, Input } from "@nextui-org/react";
 
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+// react form validation
+const schema = yup
+  .object({
+    email: yup.string().email().required(),
+    password: yup.string().required(),
+  })
+  .required();
+
 const Login = () => {
-  const onSubmit = (e) => {
-    e.preventDefault();
+  //react form validation hook
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit = (data) => {
+    console.log(data);
   };
+
   return (
     <>
       <div className="flex flex-col items-center justify-center pt-[20vh] gap-4 px-4">
@@ -16,14 +37,17 @@ const Login = () => {
         <form
           id="login-form"
           className="flex flex-col gap-4 w-full"
-          onSubmit={onSubmit}
+          onSubmit={handleSubmit(onSubmit)}
         >
           <Input
             isRequired
             variant="bordered"
             size="md"
             label="Email"
+            {...register("email")} //form validation
             placeholder="Enter your email"
+            isInvalid={errors.email ? true : false}
+            errorMessage={errors.email?.message}
           />
           <Input
             isRequired
@@ -31,7 +55,10 @@ const Login = () => {
             size="md"
             type="password"
             label="Password"
+            {...register("password")} //form validation
             placeholder="Enter your password"
+            isInvalid={errors.password ? true : false}
+            errorMessage={errors.password?.message}
           />
         </form>
         <Button

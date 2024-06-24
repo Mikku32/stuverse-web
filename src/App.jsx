@@ -1,6 +1,5 @@
-import { Button } from "@nextui-org/react";
 import { Route, Routes } from "react-router-dom";
-import { Toaster, toast } from "sonner";
+import { Toaster } from "sonner";
 import JobHome from "./Views/JobHome/JobHome";
 import Login from "./Views/Login/Login";
 
