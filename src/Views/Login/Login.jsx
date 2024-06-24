@@ -7,6 +7,7 @@ import * as yup from "yup";
 import { useDispatch } from "react-redux";
 import { loginWithEmailPassword } from "../../Redux/Slices/authSlice";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 // react form validation
 const schema = yup
@@ -18,6 +19,7 @@ const schema = yup
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   //react form validation hook
   const {
     register,
@@ -30,6 +32,7 @@ const Login = () => {
   const onSubmit = (data) => {
     try {
       dispatch(loginWithEmailPassword(data)).unwrap();
+      navigate("/");
     } catch (error) {
       toast.error(error.message);
     }
