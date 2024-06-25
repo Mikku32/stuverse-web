@@ -6,6 +6,8 @@ import DetailPage from "./Views/DetailPage";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { loadUser } from "./Redux/Slices/authSlice";
+import ProtectedRoute from "./Components/ProtectedRoute";
+import UnProtectedRoute from "./Components/UnProtectedroute";
 
 const App = () => {
   const authState = useSelector((state) => state.auth);
@@ -23,9 +25,13 @@ const App = () => {
       <Toaster richColors />
 
       <Routes>
-        <Route path="/" element={<JobHome />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<ProtectedRoute element={<JobHome />} />} />
+        <Route
+          path="/login"
+          element={<UnProtectedRoute element={<Login />} />}
+        />
         <Route path="/description" element={<DetailPage />} />
+        <Route path="*" element={<div>Page does not exist</div>} />
       </Routes>
     </div>
   );

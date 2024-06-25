@@ -15,9 +15,9 @@ const JobCard = () => {
       onClick={() => {
         navigate("/description");
       }}
-      className="flex mt-4  flex-col bg-gray-800 rounded-[23px] p-4"
+      className="flex mt-4  flex-col bg-gray-800 rounded-[23px] p-4 border-1 border-gray-300"
     >
-      <div className="flex flex-row">
+      <div className="flex flex-row ">
         <img src={stuverseLogo} alt="logo" className="w-16 h-16 rounded-full" />
         <div className="flex flex-col ml-4 mt-2">
           <h1 className="text-md font-bold font-sans">

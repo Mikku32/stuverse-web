@@ -1,6 +1,6 @@
 import { Input } from "@nextui-org/react";
 import stuverseLogo from "../../assets/stuverse_cleaned.png";
-import { MdSearch } from "react-icons/md";
+import { MdAdd, MdSearch } from "react-icons/md";
 import JobCard from "./Component/JobCard";
 // import { useSelector } from "react-redux";
 
@@ -9,7 +9,17 @@ const JobHome = () => {
   return (
     <div className="flex flex-col px-3 mb-3 ">
       <nav className="flex justify-center">
-        <img src={stuverseLogo} alt="logo" className="w-20 h-20" />
+        <div className="flex-1"></div>
+
+        {/* Centered Image */}
+        <div className="flex-1 flex justify-center">
+          <img src={stuverseLogo} alt="logo" className="w-16 h-16" />
+        </div>
+
+        {/* Button on the right side */}
+        <div className="flex-1 flex justify-end">
+          <MdAdd size={30} className="ml-4 mt-4" onClick={() => {}} />
+        </div>
       </nav>
       <div className="flex flex-col text-4xl mt-3 mb-5 font-bold font-mono">
         <h1>Find Your Dream</h1>
