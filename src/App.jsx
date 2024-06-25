@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { Toaster } from "sonner";
 import JobHome from "./Views/JobHome/JobHome";
 import Login from "./Views/Login/Login";
-import DetailPage from "./Views/DetailPage";
+import DetailPage from "./Views/DetailPage/DetailPage";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { loadUser } from "./Redux/Slices/authSlice";
@@ -30,7 +30,10 @@ const App = () => {
           path="/login"
           element={<UnProtectedRoute element={<Login />} />}
         />
-        <Route path="/description" element={<DetailPage />} />
+        <Route
+          path="/description"
+          element={<ProtectedRoute element={<DetailPage />} />}
+        />
         <Route path="*" element={<div>Page does not exist</div>} />
       </Routes>
     </div>

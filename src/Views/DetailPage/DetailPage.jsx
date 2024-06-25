@@ -1,5 +1,6 @@
 import { MdArrowBackIos, MdOutlineShoppingBag } from "react-icons/md";
-import stuverseLogo from "../assets/stuverse_cleaned.png";
+import stuverseLogo from "../../assets/stuverse_cleaned.png";
+import SkillCard from "./Component/skillCard";
 // import { useSelector } from "react-redux";
 
 const DetailPage = () => {
@@ -40,13 +41,22 @@ const DetailPage = () => {
           </div>
         </div>
       </div>
-      <hr className="opacity-30 mb-3" />
-      <div>
+      <hr className="opacity-30 mb-4" />
+      <div className="mb-4">
         <h1 className="font-bold">Skills Required :</h1>
-        <div className="inline-flex gap-2 mt-2 border-1 border-gray-500 p-2 rounded-[14px] bg-slate-800 ">
-          <h1 className=" font-light text-xs ">visual communication</h1>
-        </div>
+        <SkillCard />
+        <SkillCard />
+        <SkillCard />
+        <SkillCard />
+        <SkillCard />
       </div>
+
+      <h1>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima culpa
+        temporibus, quos doloremque amet cumque consequuntur natus magni, quia
+        itaque excepturi et obcaecati cupiditate, commodi illum recusandae omnis
+        pariatur dolorem.
+      </h1>
     </div>
   );
 };
