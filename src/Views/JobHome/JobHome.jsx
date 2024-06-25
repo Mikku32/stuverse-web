@@ -2,8 +2,10 @@ import { Input } from "@nextui-org/react";
 import stuverseLogo from "../../assets/stuverse_cleaned.png";
 import { MdSearch } from "react-icons/md";
 import JobCard from "./Component/JobCard";
+// import { useSelector } from "react-redux";
 
 const JobHome = () => {
+  // const authState = useSelector((state) => state.auth);
   return (
     <div className="flex flex-col px-3 mb-3 ">
       <nav className="flex justify-center">
@@ -23,6 +25,10 @@ const JobHome = () => {
       <h1 className="text-2xl mt-8 font-bold">Featured Jobs</h1>
       <JobCard />
       <JobCard />
+      <JobCard />
+
+      <JobCard />
+
       <JobCard />
     </div>
   );

@@ -17,7 +17,19 @@ export const loginWithEmailPassword = createAsyncThunk(
 const authSlice = createSlice({
   name: "auth",
   initialState: initialstate,
-  reducers: {},
+  reducers: {
+    loadUser: (state) => {
+      const user = JSON.parse(localStorage.getItem("user")); //getting the user data from local storage and parsing it to json
+      if (user) {
+        state.user = user;
+      }
+      state.status = "success";
+    },
+    logout: (state) => {
+      state.user = null;
+      localStorage.removeItem("user");
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(loginWithEmailPassword.pending, (state) => {
@@ -26,6 +38,7 @@ const authSlice = createSlice({
       .addCase(loginWithEmailPassword.fulfilled, (state, action) => {
         state.status = "success";
         state.user = action.payload;
+        localStorage.setItem("user", JSON.stringify(action.payload)); //storing the user data in local storage in user as a string
       })
       .addCase(loginWithEmailPassword.rejected, (state) => {
         state.status = "failed";
@@ -33,4 +46,5 @@ const authSlice = createSlice({
   },
 });
 
+export const { loadUser, logout } = authSlice.actions;
 export default authSlice.reducer;

@@ -6,10 +6,17 @@ import {
   MdLocationPin,
   MdOutlineShoppingBag,
 } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const JobCard = () => {
+  const navigate = useNavigate();
   return (
-    <div className="flex mt-4  flex-col bg-gray-800 rounded-[23px] p-4">
+    <div
+      onClick={() => {
+        navigate("/description");
+      }}
+      className="flex mt-4  flex-col bg-gray-800 rounded-[23px] p-4"
+    >
       <div className="flex flex-row">
         <img src={stuverseLogo} alt="logo" className="w-16 h-16 rounded-full" />
         <div className="flex flex-col ml-4 mt-2">
@@ -37,8 +44,12 @@ const JobCard = () => {
       <div className="flex flex-row my-2 justify-between">
         <h1 className="text-md font-light text-gray-400">2 months ago</h1>
         <div className="rounded-full bg-blue-800 p-1">
-          {" "}
-          <MdArrowForwardIos size={20} />
+          <MdArrowForwardIos
+            size={20}
+            onClick={() => {
+              navigate("/description");
+            }}
+          />
         </div>
       </div>
     </div>

@@ -30,12 +30,13 @@ const Login = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     try {
-      dispatch(loginWithEmailPassword(data)).unwrap();
+      await dispatch(loginWithEmailPassword(data)).unwrap();
+      toast.success("Login Successful");
       navigate("/");
     } catch (error) {
-      toast.error(error.message);
+      toast.error("Inavalid Credentials");
     }
   };
 
@@ -96,7 +97,12 @@ const Login = () => {
         </Button>
         <div className="flex justify-center ">
           <p className="mr-3">{"Don't have an account?"} </p>
-          <p className="text-blue-400 hover:cursor-pointer hover:underline">
+          <p
+            className="text-blue-400 hover:cursor-pointer hover:underline"
+            onClick={() => {
+              console.log("Sign Up");
+            }}
+          >
             Sign Up
           </p>
         </div>
