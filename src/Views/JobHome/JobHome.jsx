@@ -2,10 +2,31 @@ import { Input } from "@nextui-org/react";
 import stuverseLogo from "../../assets/stuverse_cleaned.png";
 import { MdAdd, MdSearch } from "react-icons/md";
 import JobCard from "./Component/JobCard";
-// import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getJobs } from "../../Redux/Slices/Jobslice";
+import { useSelector } from "react-redux";
+import { toast } from "sonner";
 
 const JobHome = () => {
   // const authState = useSelector((state) => state.auth);
+  const accessToken = useSelector((state) => state.auth.user.token.access);
+  const jobState = useSelector((state) => state.jobs);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const fetchJobs = async () => {
+      try {
+        await dispatch(
+          getJobs({
+            token: accessToken,
+          })
+        ).unwrap();
+      } catch (error) {
+        toast.error("Something went wrong");
+      }
+    };
+    fetchJobs();
+  }, [accessToken, dispatch]);
   return (
     <div className="flex flex-col px-3 mb-3 ">
       <nav className="flex justify-center">
@@ -33,13 +54,9 @@ const JobHome = () => {
         placeholder="Search jobs here...."
       />
       <h1 className="text-2xl mt-8 font-bold">Featured Jobs</h1>
-      <JobCard />
-      <JobCard />
-      <JobCard />
-
-      <JobCard />
-
-      <JobCard />
+      {jobState.jobs.map((job) => (
+        <JobCard key={job.id} job={job} />
+      ))}
     </div>
   );
 };

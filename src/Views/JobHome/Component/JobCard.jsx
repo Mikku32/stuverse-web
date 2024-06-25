@@ -1,5 +1,5 @@
 import { Button } from "@nextui-org/react";
-import stuverseLogo from "../../../assets/stuverse_cleaned.png";
+
 import {
   MdArrowForwardIos,
   MdHome,
@@ -7,8 +7,8 @@ import {
   MdOutlineShoppingBag,
 } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-
-const JobCard = () => {
+import PropTypes from "prop-types";
+const JobCard = ({ job }) => {
   const navigate = useNavigate();
   return (
     <div
@@ -18,26 +18,26 @@ const JobCard = () => {
       className="flex mt-4  flex-col bg-gray-800 rounded-[23px] p-4 border-1 border-gray-300"
     >
       <div className="flex flex-row ">
-        <img src={stuverseLogo} alt="logo" className="w-16 h-16 rounded-full" />
+        <img src={job.image} alt="logo" className="w-16 h-16 rounded-full" />
         <div className="flex flex-col ml-4 mt-2">
-          <h1 className="text-md font-bold font-sans">
-            Mern Full Stack Developer
+          <h1 className="text-md font-bold font-sans">{job.title}</h1>
+          <h1 className="text-md font-light text-gray-400">
+            {job.companyName}
           </h1>
-          <h1 className="text-md font-light text-gray-400">White Mastery</h1>
         </div>
       </div>
       <div className="flex flex-row mt-4 gap-4 mb-3">
         <Button variant="bordered" startContent={<MdOutlineShoppingBag />}>
-          Temporary{" "}
+          {job.jobType}
         </Button>
         <Button variant="bordered" startContent={<MdHome />}>
-          Onsite
+          {job.jobLocationType}
         </Button>
       </div>
 
       <div className="flex flex-row gap-2 mb-1">
         <MdLocationPin />
-        <h1 className=" gap-3 text-md">chennai, Tamil Nadu</h1>
+        <h1 className=" gap-3 text-md">{job.place}</h1>
       </div>
       <hr />
 
@@ -56,4 +56,7 @@ const JobCard = () => {
   );
 };
 
+JobCard.propTypes = {
+  job: PropTypes.object,
+};
 export default JobCard;
