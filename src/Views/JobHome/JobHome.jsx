@@ -8,6 +8,7 @@ import { getJobs } from "../../Redux/Slices/Jobslice";
 import { useSelector } from "react-redux";
 import { toast } from "sonner";
 import { logout } from "../../Redux/Slices/authSlice";
+import { useNavigate } from "react-router-dom";
 
 const JobHome = () => {
   // const authState = useSelector((state) => state.auth);
@@ -15,6 +16,8 @@ const JobHome = () => {
   const accessToken = useSelector((state) => state.auth.user.token.access);
   const jobState = useSelector((state) => state.jobs);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   useEffect(() => {
     const fetchJobs = async () => {
       try {
@@ -35,14 +38,19 @@ const JobHome = () => {
       <nav className="flex justify-center">
         <div className="flex-1"></div>
 
-        {/* Centered Image */}
         <div className="flex-1 flex justify-center">
           <img src={stuverseLogo} alt="logo" className="w-16 h-16" />
         </div>
 
-        {/* Button on the right side */}
         <div className="flex-1 flex justify-end">
-          <MdLogout size={30} className="ml-4 mt-4" onClick={() => {}} />
+          <MdLogout
+            size={30}
+            className="ml-4 mt-4"
+            onClick={() => {
+              navigate("/login");
+              dispatch(logout());
+            }}
+          />
         </div>
       </nav>
       <div className="flex flex-col text-4xl mt-3 mb-5 font-bold font-mono">
