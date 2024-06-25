@@ -1,5 +1,3 @@
-import { Button } from "@nextui-org/react";
-
 import {
   MdArrowForwardIos,
   MdHome,
@@ -27,12 +25,18 @@ const JobCard = ({ job }) => {
         </div>
       </div>
       <div className="flex flex-row mt-4 gap-4 mb-3">
-        <Button variant="bordered" startContent={<MdOutlineShoppingBag />}>
-          {job.jobType}
-        </Button>
-        <Button variant="bordered" startContent={<MdHome />}>
-          {job.jobLocationType}
-        </Button>
+        <div className="flex flex-row gap-2 border-1 border-gray-500 p-2 rounded-[15px] bg-slate-700">
+          <div className="flex mt-1">
+            <MdOutlineShoppingBag size={20} />
+          </div>
+          <div className="flex font-bold">{job.jobType}</div>
+        </div>
+        <div className="flex flex-row gap-2 border-1 border-gray-500 p-2 rounded-[15px] bg-slate-700">
+          <div className="flex mt-1">
+            <MdHome size={20} />
+          </div>
+          <div className="flex font-bold">{job.jobLocationType}</div>
+        </div>
       </div>
 
       <div className="flex flex-row gap-2 mb-1">

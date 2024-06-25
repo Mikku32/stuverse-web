@@ -6,14 +6,20 @@ const initialState = {
   status: "idle",
 };
 
-export const getJobs = createAsyncThunk("jobs/getJobs", async ({ token }) => {
-  const resp = await axiosClient.get("/job/posts/", {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  return resp.data;
-});
+export const getJobs = createAsyncThunk(
+  "jobs/getJobs",
+  async ({ token, search }) => {
+    const resp = await axiosClient.get("/job/posts/", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      params: {
+        search: search,
+      },
+    });
+    return resp.data;
+  }
+);
 
 const jobSlice = createSlice({
   name: "jobs",

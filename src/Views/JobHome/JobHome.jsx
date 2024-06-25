@@ -3,13 +3,14 @@ import stuverseLogo from "../../assets/stuverse_cleaned.png";
 import { MdAdd, MdSearch } from "react-icons/md";
 import JobCard from "./Component/JobCard";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getJobs } from "../../Redux/Slices/Jobslice";
 import { useSelector } from "react-redux";
 import { toast } from "sonner";
 
 const JobHome = () => {
   // const authState = useSelector((state) => state.auth);
+  const [SearchTerm, setSearchTerm] = useState("");
   const accessToken = useSelector((state) => state.auth.user.token.access);
   const jobState = useSelector((state) => state.jobs);
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ const JobHome = () => {
         await dispatch(
           getJobs({
             token: accessToken,
+            search: SearchTerm,
           })
         ).unwrap();
       } catch (error) {
@@ -26,7 +28,7 @@ const JobHome = () => {
       }
     };
     fetchJobs();
-  }, [accessToken, dispatch]);
+  }, [accessToken, dispatch, SearchTerm]);
   return (
     <div className="flex flex-col px-3 mb-3 ">
       <nav className="flex justify-center">
@@ -49,6 +51,7 @@ const JobHome = () => {
       <Input
         isClearable
         startContent={<MdSearch size={25} />}
+        onChange={(e) => setSearchTerm(e.target.value)}
         variant="bordered"
         size="lg"
         placeholder="Search jobs here...."
