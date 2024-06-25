@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { getJobDetail } from "../../Redux/Slices/Jobslice";
 import { toast } from "sonner";
 import Markdown from "react-markdown";
+import { Button } from "@nextui-org/react";
 
 const DetailPage = () => {
   const jobState = useSelector((state) => state.jobs);
@@ -30,8 +31,8 @@ const DetailPage = () => {
   if (jobState.status == "idle") return <div>Loading...</div>;
   if (jobState.selectedJob == null) return <div>Job Not Found</div>;
   return (
-    <div className="flex flex-col px-3 mb-3  ">
-      <nav className="flex items-center justify-between shadow-lg mb-4 pb-3">
+    <div className="flex flex-col px-3 mb-8  ">
+      <nav className="flex items-center justify-between shadow-lg mb-4 pb-3 fixed top-0 left-0 right-0 z-50 bg-gray-900">
         <div className="flex-1 flex justify-start">
           <MdArrowBackIos
             size={20}
@@ -49,7 +50,7 @@ const DetailPage = () => {
         <div className="flex-1"></div>
       </nav>
 
-      <div className="flex flex-row mb-5">
+      <div className="flex flex-row mb-5 mt-20">
         <div className="flex rounded-lg bg-slate-300 h-[125px] w-[120px] items-center">
           <img
             src={jobState.selectedJob.image}
@@ -92,7 +93,13 @@ const DetailPage = () => {
         </div>
       </div>
 
-      <Markdown>{jobState.selectedJob.description}</Markdown>
+      <Markdown className="mb-5">{jobState.selectedJob.description}</Markdown>
+      <Button color="parimary" variant="ghost" className="mb-4">
+        <a href={jobState.selectedJob.url} target="_blank">
+          {" "}
+          Apply Now
+        </a>
+      </Button>
     </div>
   );
 };

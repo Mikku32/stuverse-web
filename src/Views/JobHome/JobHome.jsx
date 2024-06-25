@@ -11,7 +11,6 @@ import { logout } from "../../Redux/Slices/authSlice";
 import { useNavigate } from "react-router-dom";
 
 const JobHome = () => {
-  // const authState = useSelector((state) => state.auth);
   const [SearchTerm, setSearchTerm] = useState("");
   const accessToken = useSelector((state) => state.auth.user.token.access);
   const jobState = useSelector((state) => state.jobs);
@@ -35,7 +34,7 @@ const JobHome = () => {
   }, [accessToken, dispatch, SearchTerm]);
   return (
     <div className="flex flex-col px-3 mb-3 ">
-      <nav className="flex justify-center">
+      <nav className="flex justify-center shadow-lg fixed top-0 left-0 right-0 z-50 bg-gray-900">
         <div className="flex-1"></div>
 
         <div className="flex-1 flex justify-center">
@@ -53,7 +52,7 @@ const JobHome = () => {
           />
         </div>
       </nav>
-      <div className="flex flex-col text-4xl mt-3 mb-5 font-bold font-mono">
+      <div className="flex flex-col text-4xl mt-20 mb-5 font-bold font-mono">
         <h1>Find Your Dream</h1>
         <h1>Job with Us</h1>
       </div>

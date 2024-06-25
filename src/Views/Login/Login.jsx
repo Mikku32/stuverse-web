@@ -33,7 +33,7 @@ const Login = () => {
   const onSubmit = async (data) => {
     try {
       await dispatch(loginWithEmailPassword(data)).unwrap();
-      toast.success("Login Successful");
+
       navigate("/");
     } catch (error) {
       toast.error("Inavalid Credentials");

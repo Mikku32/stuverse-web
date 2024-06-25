@@ -51,7 +51,7 @@ const JobCard = ({ job }) => {
           <MdArrowForwardIos
             size={20}
             onClick={() => {
-              navigate("/description");
+              navigate("/job/" + job.id);
             }}
           />
         </div>
