@@ -31,7 +31,7 @@ const App = () => {
           element={<UnProtectedRoute element={<Login />} />}
         />
         <Route
-          path="/description"
+          path="/job/:id"
           element={<ProtectedRoute element={<DetailPage />} />}
         />
         <Route path="*" element={<div>Page does not exist</div>} />

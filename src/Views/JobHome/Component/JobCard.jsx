@@ -11,7 +11,7 @@ const JobCard = ({ job }) => {
   return (
     <div
       onClick={() => {
-        navigate("/description");
+        navigate("/job/" + job.id);
       }}
       className="flex mt-4  flex-col bg-gray-800 rounded-[23px] p-4 border-1 border-gray-300"
     >

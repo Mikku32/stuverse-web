@@ -1,12 +1,13 @@
 import { Input } from "@nextui-org/react";
 import stuverseLogo from "../../assets/stuverse_cleaned.png";
-import { MdAdd, MdSearch } from "react-icons/md";
+import { MdLogout, MdSearch } from "react-icons/md";
 import JobCard from "./Component/JobCard";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { getJobs } from "../../Redux/Slices/Jobslice";
 import { useSelector } from "react-redux";
 import { toast } from "sonner";
+import { logout } from "../../Redux/Slices/authSlice";
 
 const JobHome = () => {
   // const authState = useSelector((state) => state.auth);
@@ -41,7 +42,7 @@ const JobHome = () => {
 
         {/* Button on the right side */}
         <div className="flex-1 flex justify-end">
-          <MdAdd size={30} className="ml-4 mt-4" onClick={() => {}} />
+          <MdLogout size={30} className="ml-4 mt-4" onClick={() => {}} />
         </div>
       </nav>
       <div className="flex flex-col text-4xl mt-3 mb-5 font-bold font-mono">
